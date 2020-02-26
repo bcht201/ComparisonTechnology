@@ -25,7 +25,12 @@ class Results extends React.Component{
     }
 
     sort = (array, value) =>{
-        
+        let temp = array;
+        for(let i = 0; i < array.length; i++){
+            if(value > temp[i]){
+                temp.splice()
+            }
+        }
     }
     
     render(){
