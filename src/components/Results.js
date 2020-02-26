@@ -19,8 +19,7 @@ class Results extends React.Component{
 
     sorting = () =>{
         let order = [];
-        // Go through each price of array item, compare with rest of the array and sort into price order with the index for that listing
-        // render results list based on this array of indexes sorted by price 
+        
     }
     
     render(){

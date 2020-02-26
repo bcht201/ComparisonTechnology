@@ -3,6 +3,9 @@ If there was more time for testing:
 - Mock JSON response with prices to see if sorting works
 - Check number of results being rendered
 
+Sorting:
+- Go through each price of array item, compare with rest of the array and sort into price order with the index for that listing
+- Render results list based on this array of indexes sorted by price 
 
 Additional task approach:
 - Payment method
