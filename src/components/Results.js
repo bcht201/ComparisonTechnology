@@ -19,6 +19,12 @@ class Results extends React.Component{
 
     sorting = () =>{
         let order = [];
+        this.state.payload.elecResults.forEach( value => {
+            order = this.sort(order, value)
+        })
+    }
+
+    sort = (array, value) =>{
         
     }
     
