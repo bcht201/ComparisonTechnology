@@ -19,18 +19,27 @@ class Results extends React.Component{
 
     sorting = () =>{
         let order = [];
-        this.state.payload.elecResults.forEach( value => {
+        this.state.payload.elecResults.forEach((value) => {
             order = this.sort(order, value)
         })
+        return order;
     }
 
     sort = (array, value) =>{
         let temp = array;
-        for(let i = 0; i < array.length; i++){
-            if(value > temp[i]){
-                temp.splice()
+        temp.unshift(value);
+        if(temp.length > 1){
+            let iterationIndex = 0;
+            while(iterationIndex < temp.length - 1){
+                if(temp[iterationIndex].expectedAnnualSpend > temp[iterationIndex + 1].expectedAnnualSpend){
+                    let placeholder = temp[iterationIndex];
+                    temp[iterationIndex] = temp[iterationIndex + 1];
+                    temp[iterationIndex + 1] = placeholder;
+                }
+                iterationIndex += 1;
             }
         }
+        return temp
     }
     
     render(){
@@ -44,7 +53,7 @@ class Results extends React.Component{
             return(
                 <div class = "resultsContainer">
                     <ul>{
-                        this.state.payload.elecResults.map(item => <li>{ item.name }</li>)
+                        this.sorting().map(item => <li>{ item.name }</li>)
                         }
                     </ul>
                 </div>
