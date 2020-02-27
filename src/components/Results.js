@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Dropdown from 'react-bootstrap/Dropdown'
 
 class Results extends React.Component{
     constructor(props){
@@ -41,6 +42,15 @@ class Results extends React.Component{
         }
         return temp
     }
+
+    filterPaymentMethod = () =>{ 
+        let paymentMethods = [];
+        this.state.payload.elecResults.forEach((value) => {
+            paymentMethods.push(value.paymentMethod)
+        })
+        let unique = [...new Set(paymentMethods)];
+        return unique;
+    }
     
     render(){
         if(this.state.payload === null){
@@ -49,9 +59,23 @@ class Results extends React.Component{
             )
         }
         else{
-            console.log("rendering:", this.state.payload.elecResults);
+            console.log(this.filterPaymentMethod());
             return(
                 <div class = "resultsContainer">
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Dropdown Button
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            {/* { this.filterPaymentMethod().forEach((paymentMethod) =>{
+                                return <Dropdown.Item href="">{paymentMethod}</Dropdown.Item>
+                            })} */}
+                            { this.filterPaymentMethod().map((paymentMethod) =>{
+                                return <Dropdown.Item href="">{paymentMethod}</Dropdown.Item>
+                            })}
+                        </Dropdown.Menu>
+                    </Dropdown>
                     <ul>{
                         this.sorting().map(item => <li>{ item.name }</li>)
                         }
